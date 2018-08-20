@@ -27,6 +27,8 @@
 		16F5148320A873F2001AC21B /* BlurDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F5148220A873F2001AC21B /* BlurDetector.swift */; };
 		16F5148520A8885A001AC21B /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 16F5148420A8885A001AC21B /* Shaders.metal */; };
 		16F5148720A8B104001AC21B /* AlbumPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F5148620A8B104001AC21B /* AlbumPickerViewController.swift */; };
+		16F5148B20A989C5001AC21B /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16F5148920A989C5001AC21B /* Crashlytics.framework */; };
+		16F5148C20A989C6001AC21B /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16F5148A20A989C5001AC21B /* Fabric.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,8 @@
 		16F5148220A873F2001AC21B /* BlurDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurDetector.swift; sourceTree = "<group>"; };
 		16F5148420A8885A001AC21B /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		16F5148620A8B104001AC21B /* AlbumPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumPickerViewController.swift; sourceTree = "<group>"; };
+		16F5148920A989C5001AC21B /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
+		16F5148A20A989C5001AC21B /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				16F5148120A873D8001AC21B /* MetalPerformanceShaders.framework in Frameworks */,
+				16F5148C20A989C6001AC21B /* Fabric.framework in Frameworks */,
+				16F5148B20A989C5001AC21B /* Crashlytics.framework in Frameworks */,
 				16F5147F20A873D2001AC21B /* Metal.framework in Frameworks */,
 				16F5147920A7325B001AC21B /* AVFoundation.framework in Frameworks */,
 				16F5147720A72A63001AC21B /* Photos.framework in Frameworks */,
@@ -95,6 +101,8 @@
 		16F5145220A4A184001AC21B /* FaissExample */ = {
 			isa = PBXGroup;
 			children = (
+				16F5148920A989C5001AC21B /* Crashlytics.framework */,
+				16F5148A20A989C5001AC21B /* Fabric.framework */,
 				16F5147A20A73CDE001AC21B /* mobilenetv2.mlmodel */,
 				16F5147220A4C7C5001AC21B /* pca.faiss */,
 				16F5146520A4A1AB001AC21B /* faiss.framework */,
@@ -139,6 +147,7 @@
 				16F5144C20A4A184001AC21B /* Sources */,
 				16F5144D20A4A184001AC21B /* Frameworks */,
 				16F5144E20A4A184001AC21B /* Resources */,
+				16F5148820A98987001AC21B /* Fabric */,
 			);
 			buildRules = (
 			);
@@ -195,6 +204,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		16F5148820A98987001AC21B /* Fabric */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Fabric;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run f258c410e2657abb8695853e8d6f53e54919de4e 9e448a6893e49413f5d95167d6637855bc4cd1ceb29dca344872cda2e33228f9";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		16F5144C20A4A184001AC21B /* Sources */ = {
@@ -353,11 +379,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = G8YFP4RQ86;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FaissExample",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = FaissExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -367,6 +395,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.facebook.faiss.FaissExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "95519364-5c20-430d-8e7e-ca592c8c2b4b";
+				PROVISIONING_PROFILE_SPECIFIER = "test apps";
 				SWIFT_OBJC_BRIDGING_HEADER = "FaissExample/FaissExample-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -379,11 +409,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = G8YFP4RQ86;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = U59P58LC6V;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FaissExample",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = FaissExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -393,6 +425,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.facebook.faiss.FaissExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "c1c21f74-34dd-4e6b-ac0e-f459106559dc";
+				PROVISIONING_PROFILE_SPECIFIER = "test apps dev";
 				SWIFT_OBJC_BRIDGING_HEADER = "FaissExample/FaissExample-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
